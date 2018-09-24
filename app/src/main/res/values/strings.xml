@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">HamzaOuchrif</string>
+    <string name="bonjour">Bonjour!</string>
+
+    <string name="paysage">paysage</string>
+    <string name="portrait">portrait</string>
+
+    <string name="hauteur">Hauteur: </string>
+    <string name="largeur">Largeur: </string>
+    <string name="pour_gagner">Pour gagner: </string>
+
+    <string name="parametres">Parametres</string>
+
 </resources>
