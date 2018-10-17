@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VGrille extends GridLayout {
-    //FIXME: Manque le premier paragraphe de Classe VGrille : http://ciboulot.ca/cegep/420-5B5-MO/ateliers/partie02/06/specification
+
 
     public VGrille(Context context) {
         super(context);

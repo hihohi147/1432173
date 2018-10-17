@@ -1,7 +1,5 @@
 package ca.cours5b5.hamzaouchrif.modeles;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +13,10 @@ public class MParametres extends Modele {
 
     // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07
     public static MParametres instance = new MParametres();
+
+    @AttributSerialisable
+    public MParametresPartie parametresPartie;
+    private String __parametresPartie = "parametresPartie";
 
     @AttributSerialisable
     public Integer hauteur;

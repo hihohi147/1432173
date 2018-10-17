@@ -45,9 +45,19 @@ public class VPartie extends Vue {
                 new ListenerObservateur() {
 
                     @Override
-                    public void reagirChangementAuModele(Modele modele) {
+                    public void reagirNouveauModele(Modele modele) {
+                        super.reagirNouveauModele(modele);
+                        MPartie partie = getPartie(modele);
 
-                        
+                        initialiserGrille(getPartie(modele));
+
+                    }
+
+                    @Override
+                    public void reagirChangementAuModele(Modele modele) {
+                        MPartie partie = getPartie(modele);
+                        initialiserGrille(getPartie(modele));
+
                     }
                 });
     }
@@ -55,11 +65,10 @@ public class VPartie extends Vue {
 
     private MPartie getPartie(Modele modele){
 
-
-        return ;
+        return (MPartie) modele;
     }
 
     private void initialiserGrille(MPartie partie){
-
+grille.creerGrille(partie.getParametres().getHauteur(), partie.getParametres().getLargeur());
     }
 }
