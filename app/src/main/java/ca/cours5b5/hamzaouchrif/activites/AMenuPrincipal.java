@@ -32,11 +32,24 @@ public class AMenuPrincipal extends Activite {
                 transitionParametres();
             }
         });
+
+        Button bouton2 = this.findViewById(R.id.button2);
+        bouton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transitionPartie();
+            }
+        });
     }
 
     private void transitionParametres(){
         Intent intentionParametres = new Intent(this, AParametres.class);
         startActivity(intentionParametres);
+    }
+
+    private void transitionPartie() {
+        Intent intentionPartie = new Intent(this, APartie.class);
+        startActivity(intentionPartie);
     }
 
 }
