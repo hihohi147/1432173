@@ -14,13 +14,7 @@ import ca.cours5b5.hamzaouchrif.serialisation.AttributSerialisable;
 public class MParametres extends Modele {
 
     // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07
-    public static MParametres instance;
-
-    static{
-        Log.d("Atelier04", MParametres.class.getSimpleName() + "::static");
-
-        instance = new MParametres();
-    }
+    public static MParametres instance = new MParametres();
 
     @AttributSerialisable
     public Integer hauteur;
