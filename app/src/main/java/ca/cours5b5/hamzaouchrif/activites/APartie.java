@@ -14,4 +14,10 @@ public class APartie extends Activite {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
+
 }

@@ -21,6 +21,7 @@ public class VEntete extends AppCompatButton {
 
     public VEntete(Context context, int colonne) {
         super(context);
+        this.setText(colonne);
 
     }
 }

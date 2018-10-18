@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ca.cours5b5.hamzaouchrif.vues.VGrille
-        android:id="@+id/VGrille"
+        android:id="@+id/grillePartie"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="15dp"

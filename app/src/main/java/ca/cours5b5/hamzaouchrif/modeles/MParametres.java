@@ -18,6 +18,7 @@ public class MParametres extends Modele {
     public MParametresPartie parametresPartie;
     private String __parametresPartie = "parametresPartie";
 
+
     @AttributSerialisable
     public Integer hauteur;
     private final String __hauteur = "hauteur";

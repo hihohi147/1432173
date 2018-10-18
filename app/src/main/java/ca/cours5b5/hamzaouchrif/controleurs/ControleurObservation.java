@@ -2,6 +2,7 @@ package ca.cours5b5.hamzaouchrif.controleurs;
 
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerObservateur;
@@ -16,18 +17,21 @@ public class ControleurObservation {
     private static MPartie partie;
 
     static {
+        observations = new HashMap<>();
         Log.d("Atelier06", ControleurObservation.class.getSimpleName() + "::observerModele");
     }
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
 
+
+
         if(nomModele.equals(MParametres.class.getSimpleName())){
             observations.put(MParametres.instance,listenerObservateur);
-            listenerObservateur.reagirNouveauModele(MParametres.instance);
+            lancerObservation(MParametres.instance);
 
         }else if(nomModele.equals(MPartie.class.getSimpleName())){
             observations.put(ControleurObservation.partie, listenerObservateur);
-            listenerObservateur.reagirNouveauModele(ControleurObservation.partie);
+            lancerObservation(ControleurObservation.partie);
 
 
         }
@@ -47,6 +51,23 @@ public class ControleurObservation {
          */
 
 
-    }
+
+
+
+
+        public static void lancerObservation(Modele modele){
+            ListenerObservateur listener = observations.get(modele);
+
+            if(listener != null){
+                listener.reagirChangementAuModele(modele);
+            }
+        }
+    /*
+     * Vérifier si le listener existe pour ce modele
+     * Appeler le listener
+     *
+     */
+
+
 
 }

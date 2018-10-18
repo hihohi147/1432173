@@ -20,6 +20,6 @@ public class VCase extends AppCompatButton {
 
     public VCase(Context context, int rangee, int colonne) {
         super(context);
-
+        this.setText(rangee + " . " + colonne);
     }
 }

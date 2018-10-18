@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import ca.cours5b5.hamzaouchrif.R;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurObservation;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
@@ -30,6 +31,8 @@ public class VPartie extends Vue {
     @Override
     protected void onFinishInflate(){
        super.onFinishInflate();
+        grille = this.findViewById(R.id.grillePartie);
+        observerPartie();
 
             Log.d("Atelier06", VGrille.class.getSimpleName() + "::onFinishInflate");
 
@@ -49,15 +52,15 @@ public class VPartie extends Vue {
                         super.reagirNouveauModele(modele);
                         MPartie partie = getPartie(modele);
 
-                        initialiserGrille(getPartie(modele));
+                        initialiserGrille(getPartie(partie));
 
                     }
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
                         MPartie partie = getPartie(modele);
-                        initialiserGrille(getPartie(modele));
 
+                        initialiserGrille(getPartie(partie));
                     }
                 });
     }
@@ -71,4 +74,7 @@ public class VPartie extends Vue {
     private void initialiserGrille(MPartie partie){
 grille.creerGrille(partie.getParametres().getHauteur(), partie.getParametres().getLargeur());
     }
+
+
+
 }

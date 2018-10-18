@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.hamzaouchrif.exceptions.ErreurSerialisation;
+import ca.cours5b5.hamzaouchrif.global.GConstantes;
 import ca.cours5b5.hamzaouchrif.serialisation.AttributSerialisable;
 
 public class MParametresPartie extends Modele {
@@ -19,16 +20,12 @@ public class MParametresPartie extends Modele {
     public Integer pourGagner;
     protected final String __pourGagner = "pourGagner";
 
-    public MParametresPartie(MParametres parametres) {
-hauteur = parametres.getHauteur();
-largeur = parametres.getLargeur();
-pourGagner = parametres.getPourGagner();
-    }
 
-    public MParametresPartie(Integer vHauteur, Integer vLargeur, Integer vPourGagner){
-this.hauteur = vHauteur;
-this.largeur = vLargeur;
-this.pourGagner = vPourGagner;
+    public MParametresPartie(){
+        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
+        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
+        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
+
 
     }
 
@@ -49,10 +46,13 @@ this.pourGagner = vPourGagner;
 
     public MParametresPartie cloner(){
 
-        MParametresPartie cettePartie = new MParametresPartie(this.getHauteur(), this.getLargeur(),
-                this.getPourGagner());
+        MParametresPartie mParametresPartie = new MParametresPartie();
 
-        return cettePartie;
+        mParametresPartie.hauteur = this.hauteur;
+        mParametresPartie.largeur = this.largeur;
+        mParametresPartie.pourGagner = this.pourGagner;
+
+        return mParametresPartie;
 }
     /*
      * Retourne une instance de MParametresPartie avec
@@ -93,6 +93,33 @@ return this.hauteur;
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
+
+            String chaineValeur = (String) entry.getValue();
+
+            switch (entry.getKey()){
+
+                case __hauteur:
+
+                    hauteur = Integer.valueOf(chaineValeur);
+                    break;
+
+                case __largeur:
+
+                    largeur = Integer.valueOf(chaineValeur);
+                    break;
+
+
+                case __pourGagner:
+
+                    largeur = Integer.valueOf(chaineValeur);
+                    break;
+
+                default:
+
+                    throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
+            }
+        }
 
 }
 
