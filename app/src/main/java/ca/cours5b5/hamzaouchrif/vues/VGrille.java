@@ -73,8 +73,8 @@ public class VGrille extends GridLayout {
 
     private LayoutParams getMiseEnPageEntete(int colonne) {
         int rangee = 0;
-        float poidsRangee = 2f;
-        float poidsColonne = 2f;
+        float poidsRangee = 3f;
+        float poidsColonne = 3f;
 
         Spec specRangee = GridLayout.spec(rangee, poidsRangee);
         Spec specColonne = GridLayout.spec(colonne, poidsColonne);
@@ -94,7 +94,7 @@ for (int i =0; i<largeur; i++){
 
     for (int j =0; i<hauteur; j++){
 
-        VCase nCase = new VCase(this.getContext(),i,j);
+        VCase nCase = new VCase(this.getContext(),j,i);
         addView(nCase,getMiseEnPageCase(i,j));
         lesCases[i][j] = nCase;
     }
