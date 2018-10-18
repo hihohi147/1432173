@@ -7,6 +7,7 @@ import java.util.Map;
 
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
+import ca.cours5b5.hamzaouchrif.modeles.MParametresPartie;
 import ca.cours5b5.hamzaouchrif.modeles.MPartie;
 import ca.cours5b5.hamzaouchrif.modeles.Modele;
 
@@ -26,12 +27,16 @@ public class ControleurObservation {
 
 
         if(nomModele.equals(MParametres.class.getSimpleName())){
-            observations.put(MParametres.instance,listenerObservateur);
-            lancerObservation(MParametres.instance);
+            MParametres mParametres = MParametres.getInstance();
+            observations.put(mParametres,listenerObservateur);
+
+            ControleurObservation.lancerObservation(mParametres);
 
         }else if(nomModele.equals(MPartie.class.getSimpleName())){
-            observations.put(ControleurObservation.partie, listenerObservateur);
-            lancerObservation(ControleurObservation.partie);
+            partie = new MPartie(MParametresPartie.aPartirMParametres(MParametres.getInstance()));
+            observations.put(partie, listenerObservateur);
+            ControleurObservation.lancerObservation(partie);
+
 
 
         }
@@ -56,10 +61,10 @@ public class ControleurObservation {
 
 
         public static void lancerObservation(Modele modele){
-            ListenerObservateur listener = observations.get(modele);
+            ListenerObservateur observateur = observations.get(modele);
 
-            if(listener != null){
-                listener.reagirChangementAuModele(modele);
+            if (observateur != null) {
+                observateur.reagirNouveauModele(modele);
             }
         }
     /*
@@ -67,6 +72,15 @@ public class ControleurObservation {
      * Appeler le listener
      *
      */
+
+    public static void reagirObservation(Modele modele) {
+        ListenerObservateur observateur = observations.get(modele);
+
+        if (observateur != null) {
+            observateur.reagirChangementAuModele(modele);
+        }
+    }
+
 
 
 

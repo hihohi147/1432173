@@ -23,4 +23,10 @@ public class GConstantes {
 
     public static final String SEPARATEUR_DE_CHEMIN="/";
 
+    public static final int MARGE_GRILLE = 5;
+    public static final int ENTETE_RANGEE =0;
+    public static final float ENTETE_POIDS_COLONNE =1;
+    public static final float ENTETE_POIDS_RANGEE =3;
+    public static final float CASE_POIDS_COLONNE = 1;
+    public static final float CASE_POIDS_RANGEE = 1;
 }

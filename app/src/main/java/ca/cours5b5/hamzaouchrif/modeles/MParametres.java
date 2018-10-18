@@ -36,37 +36,46 @@ public class MParametres extends Modele {
     private List<Integer> choixPourGagner;
 
     public MParametres(){
-        super();
+
 
         hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
         largeur = GConstantes.LARGEUR_PAR_DEFAUT;
         pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
 
         genererListesDeChoix();
+        this.parametresPartie = new MParametresPartie(hauteur, largeur, pourGagner);
+
+    }
+
+    public static MParametres getInstance() {
+        return instance;
     }
 
     public List<Integer> getChoixHauteur(){
-        return choixHauteur;
+        return this.choixHauteur;
     }
 
     public List<Integer> getChoixLargeur(){
-        return choixLargeur;
+        return this.choixLargeur;
     }
 
     public List<Integer> getChoixPourGagner(){
-        return choixPourGagner;
+        return this.choixPourGagner;
     }
 
     public Integer getHauteur() {
-        return hauteur;
+        return this.hauteur;
     }
 
     public Integer getLargeur() {
-        return largeur;
+        return this.largeur;
     }
 
-    public Integer getPourGagner() {
-        return pourGagner;
+
+
+
+    public MParametresPartie getParametresPartie(){
+        return this.parametresPartie;
     }
 
     public void setHauteur(int hauteur) {
@@ -77,9 +86,8 @@ public class MParametres extends Modele {
         this.largeur = largeur;
     }
 
-    public void setPourGagner(int pourGagner) {
-        this.pourGagner = pourGagner;
-    }
+
+
 
     private void genererListesDeChoix(){
         genererListeChoixHauteur();
@@ -111,32 +119,13 @@ public class MParametres extends Modele {
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
-        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()) {
 
-            String chaineValeur = (String) entry.getValue();
+            if (entry.getKey().equals(__parametresPartie)) {
+                this.parametresPartie.aPartirObjetJson((Map<String,Object>) entry.getValue());
 
-            switch (entry.getKey()){
-
-                case __hauteur:
-
-                    hauteur = Integer.valueOf(chaineValeur);
-                    break;
-
-                case __largeur:
-
-                    largeur = Integer.valueOf(chaineValeur);
-                    break;
-
-
-                case __pourGagner:
-
-                    largeur = Integer.valueOf(chaineValeur);
-                    break;
-
-                default:
-
-                    throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
             }
+
         }
     }
 
@@ -145,9 +134,7 @@ public class MParametres extends Modele {
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(__hauteur, hauteur.toString());
-        objetJson.put(__largeur, largeur.toString());
-        objetJson.put(__pourGagner, pourGagner.toString());
+        objetJson.put(__parametresPartie, this.getParametresPartie().enObjetJson());
 
         return objetJson;
 

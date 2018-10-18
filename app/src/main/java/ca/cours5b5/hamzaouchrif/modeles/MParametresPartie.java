@@ -29,30 +29,30 @@ public class MParametresPartie extends Modele {
 
     }
 
+    public MParametresPartie(int hauteur, int largeur, int pourGagner) {
+        this.setHauteur(hauteur);
+        this.setLargeur(largeur);
+        this.setPourGagner(pourGagner);
+    }
+
 
     public static MParametresPartie aPartirMParametres(MParametres mParametres){
-       MParametresPartie cettePartie = mParametres.parametresPartie.cloner();
 
-        return cettePartie;
+
+        return new MParametresPartie(mParametres.getParametresPartie().getHauteur(),
+               mParametres.getParametresPartie().getLargeur(),
+               mParametres.getParametresPartie().getPourGagner());
 
     }
     /*
      * Retourne une instance de MParametresPartie avec
      *   les mêmes paramètres partie que mParametres
      *
-     *   TRUC: utiliser cloner() ci-dessous
-     *
      */
 
     public MParametresPartie cloner(){
 
-        MParametresPartie mParametresPartie = new MParametresPartie();
-
-        mParametresPartie.hauteur = this.hauteur;
-        mParametresPartie.largeur = this.largeur;
-        mParametresPartie.pourGagner = this.pourGagner;
-
-        return mParametresPartie;
+        return new MParametresPartie(this.hauteur, this.largeur, this.pourGagner);
 }
     /*
      * Retourne une instance de MParametresPartie avec
@@ -64,18 +64,18 @@ public class MParametresPartie extends Modele {
 
 
     public Integer getHauteur(){
-return this.hauteur;
+return hauteur;
     }
 
 
 
     public Integer getLargeur(){
-        return this.largeur;
+        return largeur;
     }
 
 
     public Integer getPourGagner(){
-        return this.pourGagner;
+        return pourGagner;
     }
 
 

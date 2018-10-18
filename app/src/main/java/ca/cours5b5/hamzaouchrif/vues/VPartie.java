@@ -7,6 +7,7 @@ import android.util.Log;
 import ca.cours5b5.hamzaouchrif.R;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurObservation;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerObservateur;
+import ca.cours5b5.hamzaouchrif.exceptions.ErreurObservation;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
 import ca.cours5b5.hamzaouchrif.modeles.MPartie;
 import ca.cours5b5.hamzaouchrif.modeles.Modele;
@@ -31,8 +32,8 @@ public class VPartie extends Vue {
     @Override
     protected void onFinishInflate(){
        super.onFinishInflate();
-        grille = this.findViewById(R.id.grillePartie);
-        observerPartie();
+        this.grille = findViewById(R.id.grillePartie);
+        this.observerPartie();
 
             Log.d("Atelier06", VGrille.class.getSimpleName() + "::onFinishInflate");
 
@@ -49,30 +50,37 @@ public class VPartie extends Vue {
 
                     @Override
                     public void reagirNouveauModele(Modele modele) {
-                        super.reagirNouveauModele(modele);
+
                         MPartie partie = getPartie(modele);
 
-                        initialiserGrille(getPartie(partie));
+                        initialiserGrille(partie);
 
                     }
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        MPartie partie = getPartie(modele);
-
-                        initialiserGrille(getPartie(partie));
+                        miseAjourGrille(getPartie(modele));
                     }
                 });
     }
 
 
     private MPartie getPartie(Modele modele){
-
-        return (MPartie) modele;
+        try{
+            return (MPartie) modele;
+        } catch (ErreurObservation e) {
+           throw new ErreurObservation("..");
+        }
     }
 
     private void initialiserGrille(MPartie partie){
 grille.creerGrille(partie.getParametres().getHauteur(), partie.getParametres().getLargeur());
+    }
+
+    private void miseAjourGrille(MPartie partie) {
+
+        this.grille.afficherJetons(partie.getGrille());
+
     }
 
 
