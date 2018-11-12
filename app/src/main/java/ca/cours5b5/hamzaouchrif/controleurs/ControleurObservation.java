@@ -28,7 +28,7 @@ public class ControleurObservation {
 
         if(nomModele.equals(MParametres.class.getSimpleName())){
             MParametres mParametres = MParametres.getInstance();
-            observations.put(mParametres,listenerObservateur);
+      
 
             ControleurObservation.lancerObservation(mParametres);
 
