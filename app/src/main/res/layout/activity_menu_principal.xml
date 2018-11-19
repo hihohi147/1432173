@@ -33,4 +33,15 @@
         app:layout_constraintEnd_toEndOf="@+id/bouton_parametres"
         app:layout_constraintStart_toStartOf="@+id/bouton_parametres"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bouton_connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="@string/connexion"
+        app:layout_constraintStart_toStartOf="@+id/bouton_partie"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="45dp" />
 </ca.cours5b5.hamzaouchrif.vues.VMenuPrincipal>
