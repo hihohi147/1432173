@@ -90,4 +90,16 @@
         app:layout_constraintStart_toStartOf="@+id/spinner_largeur"
         app:layout_constraintTop_toTopOf="@+id/texte_pour_gagner" />
 
+    <Button
+        android:id="@+id/bouton_detruire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="81dp"
+        android:text="@string/detruire"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="382dp" />
+
 </ca.cours5b5.hamzaouchrif.vues.VParametres>

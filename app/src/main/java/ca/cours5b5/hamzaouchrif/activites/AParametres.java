@@ -31,11 +31,11 @@ public class AParametres extends Activite implements Fournisseur{
     }
 
     private void fournirActions(){
-        fournirActionClear();
+        fournirActionDetruire();
     }
 
-    private void fournirActionClear(){
-        ControleurAction.fournirAction(this, GCommande.RECOMMENCER, new ListenerFournisseur() {
+    private void fournirActionDetruire(){
+        ControleurAction.fournirAction(this, GCommande.DETRUIRE, new ListenerFournisseur() {
             @Override
             public void executer(Object... args) {
                 recommencerPartie();

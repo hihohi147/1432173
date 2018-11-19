@@ -2,7 +2,6 @@ package ca.cours5b5.hamzaouchrif.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +19,7 @@ import ca.cours5b5.hamzaouchrif.exceptions.ErreurObservation;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
 import ca.cours5b5.hamzaouchrif.modeles.Modele;
+import ca.cours5b5.hamzaouchrif.usagers.UsagerCourant;
 
 
 public class VParametres extends Vue {
@@ -27,10 +27,12 @@ public class VParametres extends Vue {
     private Spinner spinnerHauteur;
     private Spinner spinnerLargeur;
     private Spinner spinnerPourGagner;
+    private Button boutonDetruire;
 
     private Action actionHauteur;
     private Action actionLargeur;
     private Action actionPourGagner;
+    private Action actionDetruire;
 
     public VParametres(Context context) {
         super(context);
@@ -56,6 +58,12 @@ public class VParametres extends Vue {
 
         installerObservateur();
 
+        if(UsagerCourant.siUsagerConnecte()) {
+            boutonDetruire.setVisibility(VISIBLE);
+        } else {
+            boutonDetruire.setVisibility(GONE);
+        }
+
     }
 
     private void initialiser(){
@@ -63,6 +71,7 @@ public class VParametres extends Vue {
         spinnerHauteur = findViewById(R.id.spinner_hauteur);
         spinnerLargeur = findViewById(R.id.spinner_largeur);
         spinnerPourGagner = findViewById(R.id.spinner_pour_gagner);
+        boutonDetruire = findViewById(R.id.bouton_detruire);
 
         initialiserSpinner(spinnerHauteur);
         initialiserSpinner(spinnerLargeur);
@@ -75,7 +84,7 @@ public class VParametres extends Vue {
         actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
         actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
         actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
-
+        actionDetruire = ControleurAction.demanderAction(GCommande.DETRUIRE);
     }
 
 
@@ -91,6 +100,7 @@ public class VParametres extends Vue {
         installerListenerHauteur();
         installerListenerLargeur();
         installerListenerPourGagner();
+        installerListenerDetruire();
 
     }
 
@@ -146,6 +156,15 @@ public class VParametres extends Vue {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+    }
+
+    private void installerListenerDetruire(){
+        boutonDetruire.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionDetruire.executerDesQuePossible();
             }
         });
     }

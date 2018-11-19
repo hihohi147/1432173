@@ -17,4 +17,5 @@
     <string name="joueur2">player2</string>
     <string name="connexion">Connect</string>
     <string name="deconnexion">Disconnect</string>
+    <string name="detruire">Delete save</string>
 </resources>
