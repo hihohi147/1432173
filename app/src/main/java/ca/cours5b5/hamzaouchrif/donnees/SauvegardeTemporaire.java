@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import java.util.Map;
 
-
+import ca.cours5b5.hamzaouchrif.exceptions.ErreurModele;
 import ca.cours5b5.hamzaouchrif.serialisation.Jsonification;
 
 public class SauvegardeTemporaire extends SourceDeDonnees {
@@ -16,29 +16,30 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde) {
+    public void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement) {
 
-        if(bundle != null && bundle.containsKey(cheminSauvegarde)){
-
-            String json = bundle.getString(cheminSauvegarde);
+        String cle = getCle(cheminSauvegarde);
+        if(bundle != null && bundle.containsKey(cle)){
+            String json = bundle.getString(cle);
 
             Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
-
-            return objetJson;
+            listenerChargement.reagirSucces(objetJson);
 
         }else{
 
-            return null;
-
+            listenerChargement.reagirErreur(new Exception());
         }
     }
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
+
+        String cle = getCle(cheminSauvegarde);
+
         if(bundle != null){
 
             String json = Jsonification.enChaineJson(objetJson);
-            bundle.putString(cheminSauvegarde, json);
+            bundle.putString(cle, json);
 
         }
     }
@@ -49,6 +50,10 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
             bundle.clear();
         }
 
+    }
+
+    private String getCle(String cheminSauvegarde) {
+        return getNomModele(cheminSauvegarde);
     }
 
 }
