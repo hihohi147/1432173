@@ -7,47 +7,52 @@ import java.util.Map;
 import ca.cours5b5.hamzaouchrif.exceptions.ErreurSerialisation;
 import ca.cours5b5.hamzaouchrif.global.GCouleur;
 
-public class MGrille extends Modele {
+
+public class MGrille extends Modele  {
 
     private List<MColonne> colonnes;
 
     public MGrille(int largeur){
-        initialiserColonnes(largeur);
-    }
-
-    private void initialiserColonnes(int largeur){
 
         colonnes = new ArrayList<>();
-        for (int i = 0; i<largeur; i++) {
+
+        initialiserColonnes(largeur);
+
+    }
+
+    private void initialiserColonnes(int largeur) {
+
+        for(int i=0; i<largeur; i++){
 
             colonnes.add(new MColonne());
+
         }
     }
 
-    public List<MColonne> getColonnes(){
+
+    public List<MColonne> getColonnes() {
         return colonnes;
     }
 
-    public void placerJeton(int colonne, GCouleur couleur){
-        this.colonnes.get(colonne).placerJeton(couleur);
+
+    public void placerJeton(int colonne, GCouleur couleur) {
+
+        colonnes.get(colonne).placerJeton(couleur);
+
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
-        /*
-         * Inutilisé
-         *
-         */
-    }
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
 
+        throw new UnsupportedOperationException();
+
+    }
 
     @Override
-    public Map<String, Object> enObjetJson() throws ErreurSerialisation{
-    return null;
-        /*
-         * Inutilisé
-         *
-         */
+    public Map<String, Object> enObjetJson() throws ErreurSerialisation {
+
+        throw new UnsupportedOperationException();
 
     }
+
 }

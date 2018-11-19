@@ -12,34 +12,37 @@ public class MColonne extends Modele {
     private List<GCouleur> jetons;
 
     public MColonne(){
+
         jetons = new ArrayList<>();
+
     }
 
-    public List<GCouleur> getJetons(){
-
+    public List<GCouleur> getJetons() {
         return jetons;
     }
 
-    public void placerJeton(GCouleur couleur){
+    public void placerJeton(GCouleur couleur) {
+
         jetons.add(couleur);
+
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation{
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
+
+        throw new UnsupportedOperationException();
 
     }
-    /*
-     * Inutilisé
-     *
-     */
 
     @Override
-    public Map<String, Object> enObjetJson() throws ErreurSerialisation{
-    return null;
-        /*
-         * Inutilisé
-         *
-         */
+    public Map<String, Object> enObjetJson() throws ErreurSerialisation {
+
+        throw new UnsupportedOperationException();
+
     }
+
+    public int nombreDeJetons() {
+        return jetons.size();
+    }
+
 }
-
