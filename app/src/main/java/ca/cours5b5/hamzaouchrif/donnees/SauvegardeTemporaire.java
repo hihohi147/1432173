@@ -42,5 +42,13 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
         }
     }
+    public void detruireSauvegarde(String cheminSauvegarde) {
+
+        if(bundle != null){
+
+            bundle.clear();
+        }
+
+    }
 
 }

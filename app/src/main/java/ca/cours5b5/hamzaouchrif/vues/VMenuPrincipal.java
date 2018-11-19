@@ -9,13 +9,16 @@ import ca.cours5b5.hamzaouchrif.R;
 import ca.cours5b5.hamzaouchrif.controleurs.Action;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurAction;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
+import ca.cours5b5.hamzaouchrif.usagers.UsagerCourant;
 
 
 public class VMenuPrincipal extends Vue {
 
     private Button boutonParametres;
     private Action actionParametres;
-
+    private Button boutonConnexion;
+    private Action actionConnexion;
+    private Action actionDeconnexion;
     private Button boutonPartie;
     private Action actionPartie;
 
@@ -32,7 +35,7 @@ public class VMenuPrincipal extends Vue {
     }
 
     @Override
-    protected void onFinishInflate(){
+    protected void onFinishInflate() {
         super.onFinishInflate();
 
         recupererControles();
@@ -50,6 +53,8 @@ public class VMenuPrincipal extends Vue {
 
         boutonPartie = findViewById(R.id.bouton_partie);
 
+        boutonConnexion = findViewById((R.id.bouton_connexion));
+
     }
 
     private void demanderActions() {
@@ -57,6 +62,10 @@ public class VMenuPrincipal extends Vue {
         actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
 
         actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
+
+        actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
+
+        actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
     }
 
@@ -66,6 +75,8 @@ public class VMenuPrincipal extends Vue {
         installerListenerParametres();
 
         installerListenerPartie();
+
+        installerListenerConnexion();
 
     }
 
@@ -91,4 +102,17 @@ public class VMenuPrincipal extends Vue {
 
     }
 
+    private void installerListenerConnexion() {
+        boutonConnexion.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionConnexion.executerDesQuePossible();
+                if (UsagerCourant.siUsagerConnecte()) {
+                    actionDeconnexion.executerDesQuePossible();
+                } else if (!UsagerCourant.siUsagerConnecte()) {
+                    actionConnexion.executerDesQuePossible();
+                }
+            }
+        });
+    }
 }

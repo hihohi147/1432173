@@ -96,4 +96,12 @@ public final class Disque extends SourceDeDonnees {
 
     }
 
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+
+        File fichier = getFichier(cheminSauvegarde);
+        fichier.delete();
+
+    }
+
 }

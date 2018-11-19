@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.hamzaouchrif.donnees.Disque;
+import ca.cours5b5.hamzaouchrif.donnees.Serveur;
 import ca.cours5b5.hamzaouchrif.donnees.SourceDeDonnees;
 import ca.cours5b5.hamzaouchrif.exceptions.ErreurModele;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
-import ca.cours5b5.hamzaouchrif.modeles.MParametresPartie;
 import ca.cours5b5.hamzaouchrif.modeles.MPartie;
 import ca.cours5b5.hamzaouchrif.modeles.Modele;
-import ca.cours5b5.hamzaouchrif.donnees.Disque;
+import ca.cours5b5.hamzaouchrif.usagers.UsagerCourant;
 
 public final class ControleurModeles {
 
@@ -30,6 +31,7 @@ public final class ControleurModeles {
 
         listeDeSauvegardes = new ArrayList<>();
         listeDeSauvegardes.add(Disque.getInstance());
+        listeDeSauvegardes.add(Serveur.getInstance());
 
     }
 
@@ -134,6 +136,22 @@ public final class ControleurModeles {
 
             }
         }
+    }
+
+    public static void detruireSauvegardes(String nomModele){
+        Modele modele = getModele(nomModele);
+        if (modele != null){
+            Map<String, Object> objetJson = modele.enObjetJson();
+            objetJson.clear();
+            modelesEnMemoire.clear();
+        }
+    }
+
+
+    private static String getCheminSauvegarde(String nomModele){
+        String chemin;
+        chemin = nomModele + "/" + UsagerCourant.getId();
+        return chemin;
     }
 
 }
