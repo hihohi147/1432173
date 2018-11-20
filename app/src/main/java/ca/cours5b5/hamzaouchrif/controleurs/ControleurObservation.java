@@ -3,6 +3,7 @@ package ca.cours5b5.hamzaouchrif.controleurs;
 import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.hamzaouchrif.modeles.Modele;
 
@@ -20,11 +21,15 @@ public final class ControleurObservation {
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
-        Modele modele = ControleurModeles.getModele(nomModele);
 
-        observations.put(modele, listenerObservateur);
+        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+                observations.put(modele, listenerObservateur);
 
-        listenerObservateur.reagirNouveauModele(modele);
+                listenerObservateur.reagirNouveauModele(modele);
+            }
+        });
 
     }
 
