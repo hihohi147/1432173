@@ -15,5 +15,6 @@ public enum GCommande {
     CONNEXION,
     DECONNEXION,
     DETRUIRE,
+    AFFICHER_GAGNANT,
 
 }

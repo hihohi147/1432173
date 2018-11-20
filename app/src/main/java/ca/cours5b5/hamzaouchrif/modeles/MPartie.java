@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurAction;
+import ca.cours5b5.hamzaouchrif.controleurs.ControleurPartie;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.hamzaouchrif.exceptions.ErreurAction;
@@ -80,15 +81,20 @@ public class MPartie extends Modele implements Fournisseur {
 
     protected void jouerCoup(int colonne) {
 
-        if(siCoupLegal(colonne)){
+        if (siCoupLegal(colonne)) {
 
             listeCoups.add(colonne);
 
             grille.placerJeton(colonne, couleurCourante);
 
-            prochaineCouleurCourante();
+            if (grille.siCouleurGagne(couleurCourante, parametres.pourGagner)) {
+                ControleurPartie.getInstance().gagnerPartie(couleurCourante);
+            } else {
+                prochaineCouleurCourante();
+            }
 
         }
+
     }
 
     private boolean siCoupLegal(int colonne){
