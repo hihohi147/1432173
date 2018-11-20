@@ -48,49 +48,33 @@ public final class ControleurModeles {
     public static void sauvegarderModeleDansCetteSource(String nomModele, SourceDeDonnees sourceDeDonnees) {
 
         Modele modele = modelesEnMemoire.get(nomModele);
+        String cheminDeSauvegarde = getCheminSauvegarde(nomModele);
 
         if(modele != null){
 
             Map<String, Object> objetJson = modele.enObjetJson();
 
-            sourceDeDonnees.sauvegarderModele(nomModele, objetJson);
+            sourceDeDonnees.sauvegarderModele(cheminDeSauvegarde, objetJson);
 
         }
     }
 
-    static Modele getModele(final String nomModele, ListenerGetModele listenerGetModele){
+    static void getModele(final String nomModele, ListenerGetModele listenerGetModele) {
 
         Modele modele = modelesEnMemoire.get(nomModele);
 
-        if(modele == null) {
+
+        if (modele == null) {
+
             creerModeleEtChargerDonnees(nomModele, listenerGetModele);
+
         } else {
             listenerGetModele.reagirAuModele(modele);
         }
+
     }
 
 
-    private static Modele chargerViaSequenceDeChargement(final String nomModele){
-
-        Modele modele = creerModeleSelonNom(nomModele);
-
-        modelesEnMemoire.put(nomModele, modele);
-
-        for(SourceDeDonnees sourceDeDonnees : sequenceDeChargement){
-
-            Map<String, Object> objetJson = sourceDeDonnees.chargerModele(nomModele);
-
-            if(objetJson != null){
-
-                modele.aPartirObjetJson(objetJson);
-                break;
-
-            }
-
-        }
-
-        return modele;
-    }
 
     public static void sauvegarderModele(String nomModele) throws ErreurModele {
 
@@ -131,6 +115,7 @@ public final class ControleurModeles {
     }
 
     private static void creerModeleEtChargerDonnees(final String nomModele, final ListenerGetModele listenerGetModele){
+
         creerModeleSelonNom(nomModele, new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {
