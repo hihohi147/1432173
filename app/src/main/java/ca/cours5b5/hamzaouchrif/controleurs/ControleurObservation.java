@@ -11,6 +11,7 @@ public final class ControleurObservation {
 
     private ControleurObservation(){}
 
+
     private static Map<Modele, ListenerObservateur> observations;
 
     static {
@@ -19,19 +20,21 @@ public final class ControleurObservation {
 
     }
 
+
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
+        ControleurModeles.getModele(nomModele,
+                new ListenerGetModele() {
+                    @Override
+                    public void reagirAuModele(Modele modele) {
 
-        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
-            @Override
-            public void reagirAuModele(Modele modele) {
-                observations.put(modele, listenerObservateur);
+                        observations.put(modele, listenerObservateur);
+                        listenerObservateur.reagirNouveauModele(modele);
 
-                listenerObservateur.reagirNouveauModele(modele);
-            }
-        });
-
+                    }
+                });
     }
+
 
     public static void lancerObservation(Modele modele) {
 
@@ -44,10 +47,12 @@ public final class ControleurObservation {
         }
     }
 
+
     public static void detruireObservation(Modele modele) {
 
         observations.remove(modele);
 
     }
+
 
 }

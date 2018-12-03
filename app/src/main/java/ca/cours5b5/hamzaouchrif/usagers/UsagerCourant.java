@@ -2,19 +2,32 @@ package ca.cours5b5.hamzaouchrif.usagers;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class UsagerCourant {
+import ca.cours5b5.hamzaouchrif.global.GConstantes;
+
+public final class UsagerCourant {
+
+    private UsagerCourant(){}
 
     public static boolean siUsagerConnecte(){
-
-        return FirebaseAuth.getInstance().getCurrentUser() != null;
-
+        return FirebaseAuth.getInstance().getUid() != null;
     }
-    public static String getId() {
 
-        if(siUsagerConnecte()) {
-            return FirebaseAuth.getInstance().getCurrentUser().getUid();
-        } else {
+    public static String getId(){
+
+        if(siUsagerConnecte()){
+
             return FirebaseAuth.getInstance().getUid();
+
+        }else{
+
+            return GConstantes.ID_PAR_DEFAUT;
+
         }
     }
+
+    public static boolean estCeUsagerCourant(String idJoueur) {
+        return getId().equals(idJoueur);
+    }
+
+
 }

@@ -1,36 +1,20 @@
 package ca.cours5b5.hamzaouchrif.modeles;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.hamzaouchrif.exceptions.ErreurSerialisation;
 import ca.cours5b5.hamzaouchrif.global.GCouleur;
 import ca.cours5b5.hamzaouchrif.serialisation.AttributSerialisable;
 
-public class MColonne extends Modele {
+public class MJeton extends Modele {
 
-    private List<MJeton> jetons;
+    private GCouleur couleur;
 
-    public MColonne(){
+    public MJeton(GCouleur couleur){
 
-        jetons = new ArrayList<>();
-
-    }
-
-
-    public List<MJeton> getJetons() {
-        return jetons;
-    }
-
-
-    public void placerJeton(GCouleur couleur) {
-
-        jetons.add(new MJeton(couleur));
+        this.couleur = couleur;
 
     }
-
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
@@ -39,13 +23,19 @@ public class MColonne extends Modele {
 
     }
 
-
     @Override
-    public Map<String, Object> enObjetJson() throws ErreurSerialisation {
+    public Map<String, Object> enObjetJson() {
 
         throw new UnsupportedOperationException();
-        
+
     }
 
+    public boolean siMemeCouleur(GCouleur couleur) {
+        return this.couleur.equals(couleur);
+    }
+
+    public GCouleur getCouleur() {
+        return couleur;
+    }
 
 }

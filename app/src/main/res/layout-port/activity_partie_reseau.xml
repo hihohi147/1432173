@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ca.cours5b5.hamzaouchrif.vues.VPartie xmlns:android="http://schemas.android.com/apk/res/android"
+<ca.cours5b5.hamzaouchrif.vues.VPartieReseau xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.cours5b5.hamzaouchrif.activites.APartie">
+    tools:context="ca.cours5b5.hamzaouchrif.activites.APartieReseau">
 
     <ca.cours5b5.hamzaouchrif.vues.VGrille
         android:id="@+id/grille"
@@ -56,4 +56,5 @@
         app:layout_constraintEnd_toEndOf="@id/grille"
         app:layout_constraintStart_toStartOf="@id/grille"
         app:layout_constraintTop_toBottomOf="@id/grille" />
-</ca.cours5b5.hamzaouchrif.vues.VPartie>
+
+</ca.cours5b5.hamzaouchrif.vues.VPartieReseau>

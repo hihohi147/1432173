@@ -1,6 +1,7 @@
 package ca.cours5b5.hamzaouchrif.global;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GDirection {
@@ -10,25 +11,30 @@ public class GDirection {
 
     public static List<GDirection> directions;
 
-    static {
+    static{
 
         directions = new ArrayList<>();
+
+        // horizontal
         directions.add(new GDirection(1,0));
-        directions.add(new GDirection(1,1));
+
+        // vertical
         directions.add(new GDirection(0,1));
-        directions.add(new GDirection(-1,1));
-        /*
-         * Créer les directions
-         *
-         * (BONUS: a-t-on besoin de toutes les créer?)
-         *
-         */
+
+        // diagonale /
+        directions.add(new GDirection(1,1));
+
+        // diagonale \
+        directions.add(new GDirection(1,-1));
 
     }
 
-    public GDirection(int incrementHorizontal, int incrementVertical) {
+    public GDirection(int incrementHorizontal, int incrementVertical){
+
         this.incrementHorizontal = incrementHorizontal;
         this.incrementVertical = incrementVertical;
 
     }
+
+
 }
