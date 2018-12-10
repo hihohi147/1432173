@@ -25,7 +25,7 @@
     <string name="connexion">connexion</string>
     <string name="deconnexion">déconnexion</string>
 
-    <string name="effacer_partie_courante">Effacer partie courante</string>
+    <string name="detruire">Effacer partie</string>
 
     <string name="en_attente_adversaire">En attente d\'un.e adversaire…</string>
 

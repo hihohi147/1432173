@@ -91,17 +91,14 @@
         app:layout_constraintTop_toTopOf="@+id/texte_pour_gagner" />
 
     <Button
-        android:id="@+id/bouton_effacer_partie"
+        android:id="@+id/bouton_detruire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/effacer_partie_courante"
+        android:layout_marginBottom="81dp"
+        android:text="@string/detruire"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_pour_gagner"
-        app:layout_constraintVertical_bias="0.83" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="382dp" />
 </ca.cours5b5.hamzaouchrif.vues.VParametres>

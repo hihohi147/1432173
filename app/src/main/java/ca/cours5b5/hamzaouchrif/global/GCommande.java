@@ -18,7 +18,7 @@ public enum GCommande {
     DECONNEXION,
 
 
-    EFFACER_PARTIE_COURANTE,
+    DETRUIRE,
 
     RECEVOIR_COUP_RESEAU,
 

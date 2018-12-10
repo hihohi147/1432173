@@ -2,7 +2,6 @@ package ca.cours5b5.hamzaouchrif.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +19,7 @@ import ca.cours5b5.hamzaouchrif.exceptions.ErreurObservation;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
 import ca.cours5b5.hamzaouchrif.modeles.Modele;
+import ca.cours5b5.hamzaouchrif.usagers.UsagerCourant;
 
 
 public class VParametres extends Vue {
@@ -30,7 +30,7 @@ public class VParametres extends Vue {
     private Spinner spinnerLargeur;
     private Spinner spinnerPourGagner;
 
-    private Button boutonEffacerPartieCourante;
+    private Button boutonDetruire;
 
 
     public VParametres(Context context) {
@@ -55,6 +55,12 @@ public class VParametres extends Vue {
 
         installerObservateur();
 
+        if(UsagerCourant.siUsagerConnecte()) {
+            boutonDetruire.setVisibility(VISIBLE);
+        } else {
+            boutonDetruire.setVisibility(GONE);
+        }
+
     }
 
     private void initialiser(){
@@ -62,7 +68,7 @@ public class VParametres extends Vue {
         spinnerLargeur = findViewById(R.id.spinner_largeur);
         spinnerPourGagner = findViewById(R.id.spinner_pour_gagner);
 
-        boutonEffacerPartieCourante = findViewById(R.id.bouton_effacer_partie);
+        boutonDetruire = findViewById(R.id.bouton_detruire);
 
         initialiserSpinner(spinnerHauteur);
         initialiserSpinner(spinnerLargeur);
@@ -79,7 +85,7 @@ public class VParametres extends Vue {
         installerListenerHauteur();
         installerListenerLargeur();
         installerListenerPourGagner();
-        installerListenerEffacerPartieCourante();
+        installerListenerDetruire();
     }
 
 
@@ -147,20 +153,16 @@ public class VParametres extends Vue {
         });
     }
 
-    private void installerListenerEffacerPartieCourante() {
+    private void installerListenerDetruire(){
 
-        final Action actionEffacerPartieCourante = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE);
+        final Action actionDetruire = ControleurAction.demanderAction(GCommande.DETRUIRE);
 
-
-        boutonEffacerPartieCourante.setOnClickListener(new OnClickListener() {
+        boutonDetruire.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                actionEffacerPartieCourante.executerDesQuePossible();
-
+                actionDetruire.executerDesQuePossible();
             }
         });
-
     }
 
     private void installerObservateur() {

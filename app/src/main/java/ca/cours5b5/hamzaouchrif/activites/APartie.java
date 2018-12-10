@@ -7,6 +7,8 @@ import ca.cours5b5.hamzaouchrif.controleurs.ControleurAction;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurModeles;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.hamzaouchrif.donnees.Disque;
+import ca.cours5b5.hamzaouchrif.donnees.Serveur;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
 import ca.cours5b5.hamzaouchrif.modeles.MPartie;
 
@@ -31,9 +33,18 @@ public class APartie extends Activite implements Fournisseur {
                     public void executer(Object... args) {
 
                         quitterCetteActivite();
+                        recommencerPartie();
 
                     }
                 });
+    }
+
+
+
+    private void recommencerPartie(){
+        Disque.getInstance().detruireSauvegarde(MPartie.class.getSimpleName());
+        Serveur.getInstance().detruireSauvegarde(MPartie.class.getSimpleName());
+        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
     }
 
 

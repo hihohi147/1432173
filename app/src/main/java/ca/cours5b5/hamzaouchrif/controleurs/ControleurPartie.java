@@ -1,8 +1,6 @@
 package ca.cours5b5.hamzaouchrif.controleurs;
 
 
-import android.util.Log;
-
 import ca.cours5b5.hamzaouchrif.global.GCommande;
 import ca.cours5b5.hamzaouchrif.global.GCouleur;
 
@@ -17,6 +15,7 @@ public final class ControleurPartie {
 
         Action actionTerminerPartie = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE);
 
+
         Action actionAfficherMessage = ControleurAction.demanderAction(GCommande.AFFICHER_MESSAGE_GAGNANT);
 
 
@@ -24,6 +23,8 @@ public final class ControleurPartie {
                 actionTerminerPartie);
 
         actionAfficherMessage.executerDesQuePossible();
+
+
 
     }
 

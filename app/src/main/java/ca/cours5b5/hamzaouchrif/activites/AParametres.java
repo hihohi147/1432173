@@ -8,6 +8,8 @@ import ca.cours5b5.hamzaouchrif.controleurs.ControleurAction;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurModeles;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.hamzaouchrif.donnees.Disque;
+import ca.cours5b5.hamzaouchrif.donnees.Serveur;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
 import ca.cours5b5.hamzaouchrif.modeles.MParametres;
 import ca.cours5b5.hamzaouchrif.modeles.MPartie;
@@ -25,19 +27,23 @@ public class AParametres extends Activite implements Fournisseur{
 
     }
 
+    private void fournirActions(){
+        fournirActionDetruire();
+    }
 
-    private void fournirActions() {
+    private void fournirActionDetruire(){
+        ControleurAction.fournirAction(this, GCommande.DETRUIRE, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                recommencerPartie();
+            }
+        });
+    }
 
-        ControleurAction.fournirAction(this,
-                GCommande.EFFACER_PARTIE_COURANTE,
-                new ListenerFournisseur() {
-                    @Override
-                    public void executer(Object... args) {
-
-                        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
-
-                    }
-                });
+    private void recommencerPartie(){
+        Disque.getInstance().detruireSauvegarde(MPartie.class.getSimpleName());
+        Serveur.getInstance().detruireSauvegarde(MPartie.class.getSimpleName());
+        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
     }
 
     @Override

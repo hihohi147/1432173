@@ -21,7 +21,7 @@
     <string name="connexion">login</string>
     <string name="deconnexion">logout</string>
 
-    <string name="effacer_partie_courante">Delete current game</string>
+    <string name="detruire">Delete save</string>
 
     <string name="en_attente_adversaire">Waiting for an opponent…</string>
 
