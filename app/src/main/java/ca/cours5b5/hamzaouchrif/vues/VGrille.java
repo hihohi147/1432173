@@ -2,18 +2,19 @@ package ca.cours5b5.hamzaouchrif.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.GridLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+import ca.cours5b5.hamzaouchrif.R;
 import ca.cours5b5.hamzaouchrif.controleurs.Action;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurAction;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
-import ca.cours5b5.hamzaouchrif.global.GCouleur;
 import ca.cours5b5.hamzaouchrif.modeles.MColonne;
 import ca.cours5b5.hamzaouchrif.modeles.MGrille;
 import ca.cours5b5.hamzaouchrif.modeles.MJeton;
@@ -130,11 +131,14 @@ public class VGrille extends GridLayout {
         return paramsEntete;
     }
 
-    private void installerListenerEntete(VEntete entete, final int colonne) {
+    private void installerListenerEntete(final VEntete entete, final int colonne) {
         entete.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Animation animEntete = AnimationUtils.loadAnimation(getContext(), R.anim.up_to_down);
+                entete.startAnimation(animEntete);
+                animEntete.cancel();
+                animEntete.reset();
                 actionEntete.setArguments(colonne);
                 actionEntete.executerDesQuePossible();
                 

@@ -3,6 +3,8 @@ package ca.cours5b5.hamzaouchrif.vues;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import ca.cours5b5.hamzaouchrif.R;
@@ -90,6 +92,8 @@ public class VMenuPrincipal extends Vue {
         boutonParametres.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animParametres = AnimationUtils.loadAnimation(getContext(), R.anim.lefttoright);
+                boutonParametres.startAnimation(animParametres);
                 actionParametres.executerDesQuePossible();
             }
         });
@@ -97,6 +101,8 @@ public class VMenuPrincipal extends Vue {
         boutonPartie.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animPartie = AnimationUtils.loadAnimation(getContext(), R.anim.rotate);
+                boutonPartie.startAnimation(animPartie);
                 actionPartie.executerDesQuePossible();
             }
         });
@@ -104,6 +110,8 @@ public class VMenuPrincipal extends Vue {
         boutonPartieReseau.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animPartieR = AnimationUtils.loadAnimation(getContext(), R.anim.righttoleft);
+                boutonPartieReseau.startAnimation(animPartieR);
                 actionPartieReseau.executerDesQuePossible();
             }
         });

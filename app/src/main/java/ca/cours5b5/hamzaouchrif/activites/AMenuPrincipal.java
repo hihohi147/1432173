@@ -9,18 +9,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ca.cours5b5.hamzaouchrif.R;
 import ca.cours5b5.hamzaouchrif.controleurs.ControleurAction;
-import ca.cours5b5.hamzaouchrif.modeles.MPartieReseau;
-import ca.cours5b5.hamzaouchrif.usagers.JoueursEnAttente;
-import ca.cours5b5.hamzaouchrif.controleurs.ControleurModeles;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.hamzaouchrif.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.hamzaouchrif.global.GCommande;
-import ca.cours5b5.hamzaouchrif.modeles.MParametres;
 
 import static ca.cours5b5.hamzaouchrif.global.GConstantes.CODE_CONNEXION_FIREBASE;
 
@@ -31,9 +26,11 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
+
         fournirActions();
 
     }
+
 
 
     private void fournirActions() {
