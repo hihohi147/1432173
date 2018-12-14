@@ -31,6 +31,7 @@
 
 
     <string name="message_au_gagnant">Les @@s ont gagné!</string>
+    <string name="message_connection"> Connectez-vous pour jouer en ligne</string>
 
     <string name="ROUGE">rouge</string>
     <string name="JAUNE">jaune</string>

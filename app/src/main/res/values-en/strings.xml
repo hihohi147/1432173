@@ -26,6 +26,7 @@
     <string name="en_attente_adversaire">Waiting for an opponent…</string>
 
     <string name="message_au_gagnant">@@ won!</string>
+    <string name="message_connection"> Login to play online</string>
 
     <string name="ROUGE">red</string>
     <string name="JAUNE">yellow</string>

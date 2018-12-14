@@ -110,9 +110,21 @@ public class VMenuPrincipal extends Vue {
         boutonPartieReseau.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation animPartieR = AnimationUtils.loadAnimation(getContext(), R.anim.righttoleft);
-                boutonPartieReseau.startAnimation(animPartieR);
-                actionPartieReseau.executerDesQuePossible();
+
+
+                if(UsagerCourant.siUsagerConnecte()){
+                    boutonPartieReseau.setEnabled(true);
+
+                    Animation animPartieR = AnimationUtils.loadAnimation(getContext(), R.anim.righttoleft);
+                    boutonPartieReseau.startAnimation(animPartieR);
+                    actionPartieReseau.executerDesQuePossible();
+
+                }else{
+                    boutonPartieReseau.setEnabled(false);
+                    boutonPartieReseau.setText(R.string.message_connection);
+
+                }
+
             }
         });
 
@@ -124,6 +136,8 @@ public class VMenuPrincipal extends Vue {
 
                     actionConnexion.executerDesQuePossible();
                     boutonConnexion.setText(R.string.deconnexion);
+                    boutonPartieReseau.setEnabled(true);
+                    boutonPartieReseau.setText(R.string.jouer_enligne);
 
                 }else{
 
